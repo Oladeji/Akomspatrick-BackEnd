@@ -1,4 +1,4 @@
-namespace Person.Domain.ValueObjects
+namespace Person.Domain.Entities
 {
     public class PersonType
     {

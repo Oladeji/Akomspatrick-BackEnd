@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Person.Domain.Entities;
-using Person.Domain.ValueObjects;
 namespace Person.Infrastructure
 {
     public class PersonDbContext : DbContext

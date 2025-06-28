@@ -1,5 +1,3 @@
-using Person.Domain.ValueObjects;
-
 namespace Person.Domain.Entities
 {
     public class Person

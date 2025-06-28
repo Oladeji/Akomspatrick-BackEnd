@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Person.Contracts;
-using Person.Infrastructure;
-using Person.Shared.CQRS; // Adjust namespace as needed
+using Person.Shared.CQRS; 
 
 namespace Person.Api.EndPoints
 {
@@ -55,6 +54,14 @@ namespace Person.Api.EndPoints
 
         private static async Task<IResult> CreatePersonAsync(CreatePersonRequest request, [FromServices] ISender sender, CancellationToken ct)
         {
+            // Proper validation will be done for a full system 
+            // use FluentValidation or similar libraries for complex validation
+            if (request is null  || request.Name.IsNullOrEmpty() || request.Age <0 || request.PersonTypeId < 0)
+            {
+                return Results.BadRequest("Request body cannot be null.");
+            }
+
+
             var result = await sender.Send(new CreatePersonCommand(request), ct);
             return Results.Created($"{Endpoints.APIBase}/{Endpoints.Persons.Controller}/{result.PersonId}", result);
         }

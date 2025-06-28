@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 
 namespace Person.Api;
@@ -41,10 +42,14 @@ public static class APIServiceCollection
 
     public static IServiceCollection AddCorsFromOrigin(this IServiceCollection services, IConfiguration configuration)
     {
-        var origins = new[] {  "http://localhost:5173" , "http://localhost:5173/" };
-        // The above can be moved to a config file but for time i will leave it here
+   
+        var origins = configuration.GetSection("CorsOrigins_PermittedClients").Get<string[]>();
 
 
+        if (origins == null || origins.Length == 0)
+        {
+            throw new ArgumentException("CorsOrigins_PermittedClients configuration section is missing or empty.");
+        }
         services.AddCors(options =>
         {
             options.AddPolicy("Cors_Policy", builder =>
