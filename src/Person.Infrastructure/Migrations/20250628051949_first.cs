@@ -4,7 +4,7 @@
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace Person.Api.Migrations
+namespace Person.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class first : Migration

@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Person.Contracts\Person.Contracts.csproj" />
+    <ProjectReference Include="..\Person.Domain\Person.Domain.csproj" />
+    <ProjectReference Include="..\Person.Infrastructure\Person.Infrastructure.csproj" />
+    <ProjectReference Include="..\Person.Shared\Person.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="PersonsCQRS\Commands\" />
+    <Folder Include="PersonsCQRS\Handlers\" />
+    <Folder Include="PersonsCQRS\Queries\" />
+  </ItemGroup>
+
+</Project>

@@ -1,4 +1,6 @@
-namespace Person.Api.Models
+using Person.Domain.ValueObjects;
+
+namespace Person.Domain.Entities
 {
     public class Person
     {
@@ -7,5 +9,8 @@ namespace Person.Api.Models
         public int Age { get; set; }
         public int PersonTypeId { get; set; }
         public PersonType? PersonType { get; set; }
+
+
     }
+
 }

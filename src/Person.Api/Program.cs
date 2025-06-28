@@ -1,16 +1,16 @@
-using Microsoft.EntityFrameworkCore;
 using Person.Api;
+using Person.Application;
+using Person.Infrastructure;
+
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer(); // Required for Swagger
-builder.Services.AddSwaggerGen();   
-
-
+builder.Services.AddSwaggerGen();
+builder.Services.AddInfrastructure(builder.Configuration, builder.Environment);
+builder.Services.AddApplicationServices(builder.Configuration);
 // Adds Swagger generation
-builder.Services.AddDbContext<Person.Api.Models.PersonDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))); builder.Services.AddOpenApi();
 
 var app = builder.Build();
 

@@ -1,4 +1,4 @@
-namespace Person.Api.Models
+namespace Person.Domain.ValueObjects
 {
     public class PersonType
     {
@@ -6,6 +6,6 @@ namespace Person.Api.Models
         public string Description { get; set; } = string.Empty;
 
         // Navigation property
-        public ICollection<Person>? Persons { get; set; }
+       // public ICollection<Person>? Persons { get; set; }
     }
 }

@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Person.Api.Models;
+using Person.Infrastructure;
 
 #nullable disable
 
-namespace Person.Api.Migrations
+namespace Person.Infrastructure.Migrations
 {
     [DbContext(typeof(PersonDbContext))]
-    [Migration("20250627232433_first")]
+    [Migration("20250628051949_first")]
     partial class first
     {
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace Person.Api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Person.Api.Models.Person", b =>
+            modelBuilder.Entity("Person.Domain.Entities.Person", b =>
                 {
                     b.Property<int>("PersonId")
                         .ValueGeneratedOnAdd()
@@ -121,7 +121,7 @@ namespace Person.Api.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Person.Api.Models.PersonType", b =>
+            modelBuilder.Entity("Person.Domain.ValueObjects.PersonType", b =>
                 {
                     b.Property<int>("PersonTypeId")
                         .ValueGeneratedOnAdd()
@@ -150,20 +150,15 @@ namespace Person.Api.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Person.Api.Models.Person", b =>
+            modelBuilder.Entity("Person.Domain.Entities.Person", b =>
                 {
-                    b.HasOne("Person.Api.Models.PersonType", "PersonType")
-                        .WithMany("Persons")
+                    b.HasOne("Person.Domain.ValueObjects.PersonType", "PersonType")
+                        .WithMany()
                         .HasForeignKey("PersonTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("PersonType");
-                });
-
-            modelBuilder.Entity("Person.Api.Models.PersonType", b =>
-                {
-                    b.Navigation("Persons");
                 });
 #pragma warning restore 612, 618
         }
