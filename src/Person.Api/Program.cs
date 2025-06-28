@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Person.Api;
 using Person.Application;
 using Person.Infrastructure;
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer(); // Required for Swagger
 builder.Services.AddSwaggerGen();
+builder.Services.AddAPIServices(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration, builder.Environment);
 builder.Services.AddApplicationServices(builder.Configuration);
 // Adds Swagger generation
@@ -21,6 +23,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("Cors_Policy");
 app.RegisterEndpoints();
 app.UseHttpsRedirection();
 
