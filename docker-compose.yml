@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Your_password123
+      - MSSQL_PID=Express
+      - MSSQL_MEMORY_LIMIT_MB=1024
+    ports:
+      - "1439:1433"
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 1G
+    healthcheck:
+      test: ["CMD", "sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Your_password123", "-Q", "select 1"]
+      interval: 10s
+      timeout: 5s
