@@ -1,0 +1,61 @@
+apiVersion: 1
+datasources:
+    - name: Prometheus
+      type: prometheus
+      uuid: prometheus
+      access: proxy
+      url: http://prometheus:9090
+      isDefault: true
+      version: 1
+      editable: true
+      
+    - name: Jaeger
+      type: jaeger
+      uuid: jaeger
+      access: proxy
+      url: http://jaeger:16686
+      isDefault: false
+      version: 1
+      editable: true
+      
+    - name: Loki
+      type: loki
+      uuid: loki
+      access: proxy
+      url: http://loki:3100
+      isDefault: false
+      version: 1
+      editable: true
+      
+    - name: Grafana
+      type: grafana
+      uuid: grafana
+      access: proxy
+      url: http://grafana:3000
+      isDefault: false
+      version: 1
+      editable: true
+    # - name: Tempo
+    #   type: tempo
+    #   access: proxy
+    #   url: http://tempo:3200
+    #   isDefault: false
+    #   version: 1
+    #   editable: true
+    - name: MySQL
+      type: mysql
+      uuid: mysql
+      access: proxy
+      url: http://mysql:3307
+      isDefault: false
+      version: 1
+      editable: true
+      
+    - name: Otel-Collector
+      type: otlp
+      uuid: otlp
+      access: proxy
+      url: http://otel-collector:4317
+      isDefault: false
+      version: 1
+      editable: true

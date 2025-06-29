@@ -48,15 +48,17 @@ namespace Person.Integration.Tests.Base
             {
                 var contextManager = scope.ServiceProvider.GetRequiredService<Infrastructure.PersonDbContext>();
                 contextManager.Database.EnsureCreated();
-                // Seed PersonTypes if not already present
-                if (!contextManager.PersonTypes.Any())
-                {
-                    contextManager.PersonTypes.AddRange(
-                        new PersonType { PersonTypeId = 1, Description = "Teacher" },
-                        new PersonType { PersonTypeId = 2, Description = "Student" }
-                    );
-                    contextManager.SaveChanges();
-                }
+                // Seed PersonTypes  will always be present bc i always seed it
+                //The requirement made some assumptions about person types 
+                // that made me do this
+                //if (!contextManager.PersonTypes.Any())
+                //{
+                //    contextManager.PersonTypes.AddRange(
+                //        new PersonType { PersonTypeId = 1, Description = "Teacher" },
+                //        new PersonType { PersonTypeId = 2, Description = "Student" }
+                //    );
+                //    contextManager.SaveChanges();
+                //}
             }
         }
 

@@ -21,6 +21,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{69A9B0F9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Person.Integration.Tests", "tests\Person.Integration.Tests\Person.Integration.Tests.csproj", "{8F96E794-DD5D-4E3F-907F-4279357237E2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{73280331-A066-45CE-B710-5BA56E89E253}"
+	ProjectSection(SolutionItems) = preProject
+		config\grafana-datasources.yml = config\grafana-datasources.yml
+		config\otel-collector-config.yml = config\otel-collector-config.yml
+		config\prometheus.yml = config\prometheus.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -1,0 +1,65 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: otel-collector:4318
+      http:
+        endpoint: otel-collector:4317
+
+exporters:
+  debug:
+  # otlp:
+  #   endpoint: "http://otel-collector:4317/v1/trace"
+  #   tls:
+  #     insecure: true
+  prometheus:
+    endpoint: otel-collector:8889
+  otlp:
+    endpoint: "http://jaeger:4317"
+    #endpoint: "http://otel-collector:4317/v1/trace"
+    tls:
+      insecure: true
+  # jaeger:
+  #   endpoint: "http://jaeger:14268/api/traces"
+  otlphttp:
+    endpoint: "http://loki:3100/otlp"
+    #endpoint: "http://localhost:3100/loki/api/v1/push"
+    headers:
+      "X-Scope-OrgID": "tenant1"
+    tls:
+      insecure: true
+  # loki:
+  #   endpoint: "http://loki:3100/otlp"
+  #   #otlphttp/logs:
+  #   #endpoint: "http://localhost:3100/loki/api/v1/push"
+  # labels:
+  #   job: "product-manager"
+  # properties_as_labels:
+  #   - app
+  #   - environment
+  #   - version
+  # tls:
+  #   insecure: true
+
+processors:
+  batch:
+
+extensions:
+  health_check:
+    endpoint: otel-collector:13133
+
+service:
+  extensions: [health_check]
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [prometheus, otlphttp]
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlphttp, debug]

@@ -12,11 +12,7 @@ namespace Person.Integration.Tests.Endpoints
 
         public PersonEndpointsTests(IntegrationTestWebAppFactory factory) : base(factory)
         {
-         
-            //if (_personTypes == null)
-            //{
-            //    _personTypes = GetPersonTypesFromDbAsync().GetAwaiter().GetResult();
-            //}
+
         }
 
         private async Task<List<PersonTypeResponse>> GetPersonTypesFromDbAsync()

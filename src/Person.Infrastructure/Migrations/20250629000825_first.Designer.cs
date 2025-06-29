@@ -11,7 +11,7 @@ using Person.Infrastructure;
 namespace Person.Infrastructure.Migrations
 {
     [DbContext(typeof(PersonDbContext))]
-    [Migration("20250628051949_first")]
+    [Migration("20250629000825_first")]
     partial class first
     {
         /// <inheritdoc />
@@ -121,7 +121,7 @@ namespace Person.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Person.Domain.ValueObjects.PersonType", b =>
+            modelBuilder.Entity("Person.Domain.Entities.PersonType", b =>
                 {
                     b.Property<int>("PersonTypeId")
                         .ValueGeneratedOnAdd()
@@ -152,7 +152,7 @@ namespace Person.Infrastructure.Migrations
 
             modelBuilder.Entity("Person.Domain.Entities.Person", b =>
                 {
-                    b.HasOne("Person.Domain.ValueObjects.PersonType", "PersonType")
+                    b.HasOne("Person.Domain.Entities.PersonType", "PersonType")
                         .WithMany()
                         .HasForeignKey("PersonTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
