@@ -1,0 +1,27 @@
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.EntityFrameworkCore.Design;
+// using Microsoft.Extensions.Configuration;
+// using System.IO;
+
+// namespace Person.Infrastructure
+// {
+//     public class DesignTimePersonDbContextFactory : IDesignTimeDbContextFactory<PersonDbContext>
+//     {
+//         public PersonDbContext CreateDbContext(string[] args)
+//         {
+//             // Build configuration
+//             var configuration = new ConfigurationBuilder()
+//                 .SetBasePath(Directory.GetCurrentDirectory())
+//                 .AddJsonFile("appsettings.json")
+//                 .Build();
+
+//             // Get connection string
+//             var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+//             var optionsBuilder = new DbContextOptionsBuilder<PersonDbContext>();
+//             optionsBuilder.UseSqlServer(connectionString);
+
+//             return new PersonDbContext(optionsBuilder.Options);
+//         }
+//     }
+// }

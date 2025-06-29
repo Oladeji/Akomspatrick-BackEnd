@@ -29,7 +29,7 @@ namespace Person.Infrastructure
             }
             stopwatch.Stop();
 
-            var provider = _personDbContext.Database.ProviderName ?? "Unknown";
+            var provider = _personDbContext.Database.ProviderName ;
             var data = new Dictionary<string, object>
             {
                 { "Provider", provider },

@@ -38,7 +38,7 @@ public static class APIServiceCollection
 
         services.AddCorsFromOrigin(configuration);
         services.AddInstrumentation(configuration);
-        services.AddHealthChecks(configuration);
+       // services.AddHealthChecks(configuration);
         services.AddHealthChecksWithUI();
         return services;
     }
@@ -67,13 +67,13 @@ public static class APIServiceCollection
         return services;
     }
 
-    public static IServiceCollection AddHealthChecks(this IServiceCollection services, IConfiguration configuration)
-    {
-        var hcBuilder = services.AddHealthChecks();
+    //public static IServiceCollection AddHealthChecks(this IServiceCollection services, IConfiguration configuration)
+    //{
+    //    var hcBuilder = services.AddHealthChecks();
 
-        hcBuilder.AddCheck("Person_Health", () => HealthCheckResult.Healthy());
-        return services;
-    }
+    //    hcBuilder.AddCheck("Person_Health", () => HealthCheckResult.Healthy());
+    //    return services;
+    //}
 
 
     public static IServiceCollection AddHealthChecksWithUI(this IServiceCollection services)

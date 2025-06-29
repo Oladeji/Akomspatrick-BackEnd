@@ -42,7 +42,7 @@ Person.Integration.Tests/ # Testcontainers-based integration tests
 
 ### Run with Docker (recommended)
 
-```bash
+```bash```
 docker compose up --build
 
 Local Services:
@@ -53,9 +53,50 @@ Local Services:
 - Grafana: http://localhost:3000 (admin/admin)
 - Prometheus: http://localhost:9090
 
+###  Working with Multiple DbContext Classes
+The  Solution contains more than one DbContext
 
+PersonDbContext – your application's primary DbContext
 
-Local Development:
+HealthChecksDb – a DbContext used by HealthChecksUI (usually automatically configured)
+
+You must specify the correct DbContext when adding migrations or updating the database, to avoid confusion or errors.
+
+🧱 Add Migration & Update Database (PowerShell Example)
+To target a specific DbContext (like PersonDbContext) in Package Manager Console (PMC):
+
+```powershell```
+
+Add-Migration MigrationName -Context PersonDbContext
+
+🧱 Update the Database:
+```powershell```
+
+Update-Database -Context PersonDbContext
+
+This ensures the migration is added and applied only for the PersonDbContext—not for other contexts like HealthChecksDb.
+
+🌐 If You're Using dotnet CLI Instead of PMC
+Use --context:
+
+dotnet ef migrations add MigrationName --context PersonDbContext
+dotnet ef database update --context PersonDbContext
+⚠️ Important Notes:
+If migrations already exist, and you've verified they're for PersonDbContext, you don't need to add a new one.
+✅ Just run:
+
+```powershell```
+Update-Database -Context PersonDbContext
+This applies the existing migration to the database.
+
+If you forget to specify the -Context or --context, EF might pick the wrong one, leading to errors or migration files being created for the wrong DbContext.
+
+✅ Summary
+Task	PowerShell Command	dotnet CLI Command
+Add Migration	Add-Migration Name -Context PersonDbContext	dotnet ef migrations add Name --context PersonDbContext
+Update Database	Update-Database -Context PersonDbContext	dotnet ef database update --context PersonDbContext
+
+### Local Development:
 1. Run SQL Server
 2. Update appsettings.Development.json
 3. Run: dotnet run --project src/Person.Api

@@ -1,5 +1,4 @@
 using HealthChecks.UI.Client;
-
 using Person.Api;
 using Person.Application;
 using Person.Infrastructure;
@@ -64,37 +63,16 @@ app.MapHealthChecksUI(options =>
     options.UIPath = "/health-ui"; // UI endpoint
     options.ApiPath = "/health-ui-api"; // API endpoint for the UI
 });
-//app.MapHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
-//{
-//    ResponseWriter = async (context, report) =>
-//    {
-//        context.Response.ContentType = "application/json";
-//        var result = System.Text.Json.JsonSerializer.Serialize(new
-//        {
-//            status = report.Status.ToString(),
-//            checksPoints = report.Entries.Select(e => new
-//            {
-//                Name = e.Key,
-//                value = Enum.GetName(typeof(Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus), e.Value.Status),
-//                description = e.Value.Description,
-//                data = e.Value.Data,
-//                exception = e.Value.Exception?.Message,
-//                duration = e.Value.Duration.ToString(),
-//                tags = e.Value.Tags,
-//            }),
-//        });
-//        await context.Response.WriteAsync(result);
-//    }
-//});
-if (app.Environment.IsDevelopment())
-{
-    await app.SeedPersonTestingDataAsync();
 
-}
-else
-{
-    await app.SeedOnlyPersonTypesDataAsync();
-}
+//if (app.Environment.IsDevelopment())
+//{
+//   await app.SeedPersonTestingDataAsync();
+
+//}
+//else
+//{
+//    await app.SeedOnlyPersonTypesDataAsync();
+//}
 app.MapControllers();
 
 app.Run();

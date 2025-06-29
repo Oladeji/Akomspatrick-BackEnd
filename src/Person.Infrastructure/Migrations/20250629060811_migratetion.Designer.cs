@@ -11,8 +11,8 @@ using Person.Infrastructure;
 namespace Person.Infrastructure.Migrations
 {
     [DbContext(typeof(PersonDbContext))]
-    [Migration("20250629000825_first")]
-    partial class first
+    [Migration("20250629060811_migratetion")]
+    partial class migratetion
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

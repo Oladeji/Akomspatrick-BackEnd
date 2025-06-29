@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Person.Api;
-using Person.Domain.Entities;
+
 using Testcontainers.MsSql;
 
 namespace Person.Integration.Tests.Base
